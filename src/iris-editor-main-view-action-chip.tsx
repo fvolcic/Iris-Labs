@@ -30,6 +30,9 @@ class ActionChip extends Component<ActionChipProps, ActionChipState> {
                 <div className="grid-element-2">
                     <p>{this.props.action.type == LEDActionType.SOLID && <p>Solid LED Action</p>}</p>
                 </div>
+                <div className="grid-element-3">
+                    <button className='edit-button'>Edit Action</button>
+                </div>
             </div>
         )
     }

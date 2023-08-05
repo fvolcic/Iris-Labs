@@ -10,7 +10,7 @@
 
   display: grid;
   /* 3 grid columns */
-  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-columns: 1fr 3fr 1fr;
   /* 1 grid row */
   grid-template-rows: 1fr;
 }
@@ -45,10 +45,55 @@
   font-family: 'Oswald';
   font-size: 150%;
   -webkit-font-smoothing: antialiased;
+  grid-column: 2;
   -moz-osx-font-smoothing: grayscale;
-  
 }
 
+
+.grid-element-3{
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* CSS */
+.edit-button {
+  background-image: linear-gradient(to top right, #560073, #ff05ff);
+  border-radius: 10px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 10px;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-family: 'Oswald';;
+}
+
+.edit-button:hover{
+  background-image: linear-gradient(to top right, #3b004f, #b100b1);
+}
+
+.edit-button:active{
+  background-image: linear-gradient(to top right, #240030, #720072);
+}
 
 @font-face {
   font-family: 'Oswald';
