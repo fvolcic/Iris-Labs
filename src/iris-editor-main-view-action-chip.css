@@ -1,0 +1,56 @@
+.iris-app-action-chip {
+  width: 90%;
+  height: 20%;
+  background-image: linear-gradient(to top right, #c2c2c2, #e7e7e7);
+  border-radius: 10px;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  margin-bottom: 0;
+  min-height: 20%;
+
+  display: grid;
+  /* 3 grid columns */
+  grid-template-columns: 0.5fr 1.5fr;
+  /* 1 grid row */
+  grid-template-rows: 1fr;
+}
+
+.grid-element-1{
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.iris-circle-preview {
+ 
+  /* Height must equal width on a pixel level */
+  
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+  background-color: #cc18bd;
+  
+
+}
+
+.grid-element-2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-family: 'Oswald';
+  font-size: 150%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+
+@font-face {
+  font-family: 'Oswald';
+  src: url("../static/Oswald-Regular.ttf") format("truetype");
+}
