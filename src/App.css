@@ -1,0 +1,102 @@
+.iris-app{
+  background-image: linear-gradient(to bottom right, #6b132c, #360769);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.iris-app-chip{
+  background-color: #f5f5f5;
+  width: 75%;
+  height: 75%;
+  border-radius: 10px;
+ /* box-shadow: 00px 0px 15px rgb(104, 104, 104); */
+  display: flex;
+}
+
+/*Use side by side grid*/
+.iris-app-split-view{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  grid-gap: 0px;
+  align-items: center;
+  justify-items: center;
+}
+
+.iris-app-split-view-item-1{
+  grid-column: 1;
+  width: 90%;
+  height: 90%;
+  background-color: #1881cc;
+  border-radius: 10px;
+  margin-left: 2.5%;
+}
+
+.iris-app-split-view-item-2{
+  grid-column: 2;
+  width: 90%;
+  height: 90%;
+  margin-right: 2.5%;
+  background-color: #1881cc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: t;
+  align-items: center;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */ 
+  overflow-x: hidden;
+}
+
+.iris-app-split-view-item-2::-webkit-scrollbar {
+  width: 0.4em;
+  border-radius: 10px;
+}
+
+.iris-app-split-view-item-2::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(28, 151, 185, 0.3);
+  border-radius: 10px;
+}
+
+.iris-app-split-view-item-2::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 10px;
+}
+
+.iris-app-action-tile{
+  width: 90%;
+  height: 20%;
+  background-color: #002491;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 5%;
+  margin-bottom: 0;
+  min-height: 20%;
+}
