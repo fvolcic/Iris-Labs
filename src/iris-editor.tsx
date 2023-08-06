@@ -3,7 +3,7 @@ import { Component } from 'react';
 import './iris-editor.css';
 
 import { IrisEditorMainView } from './iris-editor-main-view';
-import { LEDActionSolid, RGBColor } from './led-tools';
+import { LEDActionBase, LEDActionSolid, LEDActionGradient, RGBColor, LEDActionShift } from './led-tools';
 
 class IrisEditorProps {
 }
@@ -14,6 +14,11 @@ enum IrisEditorPages {
 
 class IrisEditorState {
     page: IrisEditorPages = IrisEditorPages.Main;
+    ledActions: LEDActionBase[];
+
+    constructor() {
+        this.ledActions = [];
+    }
 }
 
 
@@ -21,7 +26,8 @@ class IrisEditorState {
 class IrisEditor extends Component<IrisEditorProps, IrisEditorState>  {
 
     state: IrisEditorState = {
-        page: IrisEditorPages.Main
+        page: IrisEditorPages.Main,
+        ledActions: []
     }
 
     constructor(props: any) {
@@ -32,14 +38,35 @@ class IrisEditor extends Component<IrisEditorProps, IrisEditorState>  {
         this.setState({ page: page });
     }
 
+    onChangeLedActions(ledActions: LEDActionBase[]) {
+        this.setState({ ledActions: ledActions });
+    }
+
+    componentDidMount() {
+        this.setState({
+            ledActions: [
+                new LEDActionSolid([new RGBColor(255, 0, 0)], 60),
+                new LEDActionGradient([new RGBColor(255, 0, 0), new RGBColor(0, 255, 0)], 60),
+                new LEDActionShift([], 60)
+            ]});
+    }
+
     render() {
 
-        const page = this.state.page? this.state.page : IrisEditorPages.Main;
+        const page = this.state.page ? this.state.page : IrisEditorPages.Main;
 
         return <div className="iris-app-chip">
             {
                 (page == IrisEditorPages.Main) &&
-                <IrisEditorMainView ledActions={[new LEDActionSolid([new RGBColor(255, 0, 0)], 60)]} />
+                <IrisEditorMainView
+                    updateLedActions={
+                        (ledActions: LEDActionBase[]) => {
+                            this.onChangeLedActions(ledActions);
+                        }
+                    }
+                    ledActions={
+                        this.state.ledActions
+                    } />
             }
         </div>
     }

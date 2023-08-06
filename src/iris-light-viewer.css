@@ -1,0 +1,13 @@
+.light-viewer-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  position:relative
+}
+
+.iris-light-viewer-canvas {
+    background-color: #ffffff;
+    width: offsetWidth;
+    height: offsetHeight;
+}

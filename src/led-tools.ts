@@ -19,7 +19,8 @@ class RGBColor {
 
 enum LEDActionType {
     GRADIENT,
-    SOLID
+    SOLID,
+    SHIFT
 }
 
 class LEDStrip {
@@ -36,12 +37,13 @@ class LEDStrip {
     }
 }
 
-class LEDActionBase {
+abstract class LEDActionBase {
     constructor(public type: LEDActionType, public colors: RGBColor[], public numLEDs: number = 60) {
         this.type = type;
         this.colors = colors;
-        
     }
+
+    public abstract update(LEDStrip: LEDStrip): void;
 }
 
 class LEDActionSolid extends LEDActionBase {
@@ -57,4 +59,69 @@ class LEDActionSolid extends LEDActionBase {
 
 }
 
-export { LEDStrip, RGBColor, LEDActionBase, LEDActionType, LEDActionSolid }
+class LEDActionGradient extends LEDActionBase {
+    
+    leds: RGBColor[];
+    
+    constructor(public colors: RGBColor[], public numLEDs: number = 60) {
+        super(LEDActionType.GRADIENT, colors, numLEDs);
+        this.leds = new Array<RGBColor>(numLEDs);
+
+        if (colors.length < 2) {
+            colors.push(colors[0]);
+        }
+
+        const color1 = colors[0];
+        const color2 = colors[1];
+
+        const rStep = (color2.r - color1.r) / (numLEDs / 2);
+        const gStep = (color2.g - color1.g) / (numLEDs / 2);
+        const bStep = (color2.b - color1.b) / (numLEDs / 2);
+
+        for (let i = 0; i < numLEDs / 2; i++) {
+            this.leds[i] = new RGBColor(
+                Math.round(color1.r + (rStep * i)),
+                Math.round(color1.g + (gStep * i)),
+                Math.round(color1.b + (bStep * i))
+            );
+            this.leds[numLEDs - i - 1] = new RGBColor(
+                Math.round(color1.r + (rStep * i)),
+                Math.round(color1.g + (gStep * i)),
+                Math.round(color1.b + (bStep * i))
+            );
+        }
+
+    }
+
+    public update(LEDStrip: LEDStrip) {
+       for(let i = 0; i < this.numLEDs; i++) {
+           LEDStrip.LEDs[i] = this.leds[i];
+       }
+    }
+
+}
+
+class LEDActionShift extends LEDActionBase {
+    
+    shiftAmount: number;
+    
+    constructor(public colors: RGBColor[], public numLEDs: number = 60) {
+        super(LEDActionType.SHIFT, colors, numLEDs);
+        this.shiftAmount = 0;
+    }
+
+    public update(LEDStrip: LEDStrip) {
+        
+        // make copy of LEDStrip
+        const leds = LEDStrip.LEDs.slice(0);
+        
+        for (let i = 0; i < this.numLEDs; i++) {
+            LEDStrip.LEDs[i] = leds[(i + this.shiftAmount) % this.numLEDs];
+        }
+        
+        this.shiftAmount++;
+    }
+
+}
+
+export { LEDStrip, RGBColor, LEDActionBase, LEDActionType, LEDActionSolid, LEDActionGradient, LEDActionShift }
