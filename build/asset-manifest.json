@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6da30955.css",
+    "main.js": "/static/js/main.3e4653fd.js",
+    "static/js/787.9a2af097.chunk.js": "/static/js/787.9a2af097.chunk.js",
+    "static/media/Oswald-Regular.ttf": "/static/media/Oswald-Regular.e815068d369177121fd8.ttf",
+    "index.html": "/index.html",
+    "main.6da30955.css.map": "/static/css/main.6da30955.css.map",
+    "main.3e4653fd.js.map": "/static/js/main.3e4653fd.js.map",
+    "787.9a2af097.chunk.js.map": "/static/js/787.9a2af097.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6da30955.css",
+    "static/js/main.3e4653fd.js"
+  ]
+}
