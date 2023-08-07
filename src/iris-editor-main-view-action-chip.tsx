@@ -4,11 +4,11 @@ import { LEDActionBase, LEDActionType } from './led-tools';
 
 class ActionChipProps {
     action: LEDActionBase;
-    onUpdateAction: (action: LEDActionBase) => void;
+    onEditAction: () => void;
     onDeleteAction: () => void;
-    constructor(action: LEDActionBase, onUpdateAction: () => void, onDeleteAction: () => void) {
+    constructor(action: LEDActionBase, onEditAction: () => void, onDeleteAction: () => void) {
         this.action = action;
-        this.onUpdateAction = onUpdateAction;
+        this.onEditAction = onEditAction;
         this.onDeleteAction = onDeleteAction;
     }
 }
@@ -47,7 +47,7 @@ class ActionChip extends Component<ActionChipProps, ActionChipState> {
                 </div>
                 <div className="grid-element-3">
                 <button className='edit-button' onClick={this.props.onDeleteAction}>Delete</button>
-                    <button className='edit-button'>Edit</button>
+                    <button className='edit-button' onClick={this.props.onEditAction}>Edit</button>
                 </div>
             </div>
         )

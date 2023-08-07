@@ -1,4 +1,4 @@
-import { Component} from "react";
+import { Component } from "react";
 import React from "react";
 import { LEDActionBase, LEDStrip } from "./led-tools";
 
@@ -31,7 +31,7 @@ class IrisLightViewer extends Component<IrisLightViewerProps, IrisLightViewerSta
     canvasRef: React.RefObject<HTMLCanvasElement>;
 
     constructor(props: any) {
-        super(props); 
+        super(props);
         this.lightStrip = new LEDStrip(60);
         this.canvasRef = React.createRef();
     }
@@ -42,11 +42,11 @@ class IrisLightViewer extends Component<IrisLightViewerProps, IrisLightViewerSta
             ledStrip: new LEDStrip(60)
         });
         this.resizeCanvasToDisplaySize();
+        this.renderCanvasLights();
     }
 
     componentDidUpdate() {
         this.resizeCanvasToDisplaySize();
-        this.renderCanvasLights();
     }
 
     resizeCanvasToDisplaySize() {
@@ -61,46 +61,40 @@ class IrisLightViewer extends Component<IrisLightViewerProps, IrisLightViewerSta
     renderCanvasLights() {
         const canvas = this.canvasRef.current as HTMLCanvasElement;
         const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-       
+
         ctx.fillStyle = "#000000";
-        ctx.fillRect(0, 0, 100, 100);    
-       
+        ctx.fillRect(0, 0, 100, 100);
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for(let i = 0; i < this.props.ledActions.length; i++) {
+
+        for (let i = 0; i < this.props.ledActions.length; i++) {
             const action = this.props.ledActions[i];
             action.update(this.lightStrip);
         }
 
-        for(let i = 0; i < this.lightStrip.numLEDs; i++) {
+        for (let i = 0; i < this.lightStrip.numLEDs; i++) {
             const led = this.lightStrip.LEDs[i];
             ctx.fillStyle = led.toHex();
-            
+
             const x = (canvas.width / this.state.ledStrip.numLEDs) * i;
             const y = 0;
             const sizeX = canvas.width / this.state.ledStrip.numLEDs;
             const sizeY = 30;
 
-             // fill gradient
-             const grd = ctx.createLinearGradient(x, y, x + sizeX, y);
-             grd.addColorStop(0, led.toHex());
-             grd.addColorStop(1, this.lightStrip.LEDs[(i + 1) % this.lightStrip.numLEDs].toHex());
+            // fill gradient
+            const grd = ctx.createLinearGradient(x, y, x + sizeX, y);
+            grd.addColorStop(0, led.toHex());
+            grd.addColorStop(1, this.lightStrip.LEDs[(i + 1) % this.lightStrip.numLEDs].toHex());
 
             // make gradient direction horizontal
-
-
-             ctx.fillStyle = grd;
-
+            ctx.fillStyle = grd;
             ctx.fillRect(x, y, sizeX + 2, sizeY);
-
-           
-
         }
 
         setTimeout(() => {
             this.renderCanvasLights();
-        }, 1000 / 60);
-        
+        }, 1000 / 30);
+
     }
 
 
