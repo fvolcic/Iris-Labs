@@ -1,0 +1,44 @@
+.edit-button {
+    background-image: linear-gradient(to top right, #560073, #ff05ff);
+    border-radius: 10px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 10px;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    font-family: 'Oswald';
+    ;
+}
+
+.edit-button:hover {
+    background-image: linear-gradient(to top right, #3b004f, #b100b1);
+}
+
+.edit-button:active {
+    background-image: linear-gradient(to top right, #240030, #720072);
+}
+
+.color-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}

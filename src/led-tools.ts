@@ -34,7 +34,7 @@ class RGBColor {
     }
 
     public equals(c: RGBColor){
-        return (this.r == c.r && this.g == c.g && this.b == c.b)
+        return (this.r === c.r && this.g === c.g && this.b === c.b)
     }
 
 }

@@ -3,6 +3,7 @@ import './iris-editor-main-view.css'
 import { LEDActionBase } from './led-tools';
 import { ActionChip } from './iris-editor-main-view-action-chip';
 import { IrisLightViewer } from './iris-light-viewer';
+import { IrisActionEditor } from './iris-action-editor';
 
 class IrisEditorMainViewProps {
     ledActions: LEDActionBase[];
@@ -46,7 +47,7 @@ class IrisEditorMainView extends Component<IrisEditorMainViewProps, IrisEditorMa
                     <IrisLightViewer ledActions={this.props.ledActions} />
                 </div>
                 <div className="iris-app-split-view-item-2">
-                    {this.state.editorPage == IrisEditorPage.DISPLAY_ACTIONS &&
+                    {this.state.editorPage === IrisEditorPage.DISPLAY_ACTIONS &&
                         this.props.ledActions.map((action, index) => {
                             return <ActionChip
                                 action={action}
@@ -63,34 +64,11 @@ class IrisEditorMainView extends Component<IrisEditorMainViewProps, IrisEditorMa
                         })
                     }
                     {
-                        this.state.editorPage == IrisEditorPage.EDIT_ACTION &&
-                        <div>
-                            <button className='edit-button' onClick={() => {this.setState({
-                                editorPage: IrisEditorPage.DISPLAY_ACTIONS
-                            })}}>Back</button>
-                            {
-                                (this.state.editingAction != undefined) && this.state.editingAction?.colors.map(
-                                    (col, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <input
-                                                    type={"color"}
-                                                    defaultValue={col.toHex()}
-                                                    onChange={
-                                                        (e) => {
-                                                            const val = e.target.value
-                                                            col.fromHex(val)
-                                                        }
-                                                    }
-                                                >
-
-                                                </input>
-                                            </div>
-                                        )
-                                    }
-                                )
-                            }
-                        </div>
+                        this.state.editorPage === IrisEditorPage.EDIT_ACTION &&
+                        <IrisActionEditor 
+                            action={this.state.editingAction!}
+                            onBack={() => {this.setState({editorPage: IrisEditorPage.DISPLAY_ACTIONS})}}    
+                        ></IrisActionEditor>
                     }
                 </div>
             </div>
