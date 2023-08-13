@@ -1,7 +1,8 @@
 import { Component } from "react";
 import React from "react";
 import { LEDActionBase, LEDStrip } from "./led-tools";
-
+import { Canvas } from '@react-three/fiber'
+import RoomCool from './room-component'
 import './iris-light-viewer.css'
 
 class IrisLightViewerProps {
@@ -79,7 +80,7 @@ class IrisLightViewer extends Component<IrisLightViewerProps, IrisLightViewerSta
             const x = (canvas.width / this.state.ledStrip.numLEDs) * i;
             const y = 0;
             const sizeX = canvas.width / this.state.ledStrip.numLEDs;
-            const sizeY = 30;
+            const sizeY = canvas.height;
 
             // fill gradient
             const grd = ctx.createLinearGradient(x, y, x + sizeX, y);
@@ -100,8 +101,13 @@ class IrisLightViewer extends Component<IrisLightViewerProps, IrisLightViewerSta
 
     render() {
         return (
-            <div className="light-viewer-container">
-                <canvas ref={this.canvasRef} id="iris-light-viewer-canvas" width="100%" height="100%"></canvas>
+            <div className="dual-view-container">
+                <div className="light-viewer-container">
+                    <canvas ref={this.canvasRef} id="iris-light-viewer-canvas" width="100%" height="100%"></canvas>
+                </div>
+                <div className="scene-3d-container">
+                   <RoomCool LEDStrip={this.lightStrip}/>
+                </div>
             </div>
         )
     }
